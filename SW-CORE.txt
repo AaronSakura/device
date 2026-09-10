@@ -1,0 +1,166 @@
+!!
+switch convert mode stand-alone
+!!
+!
+no service password-encryption
+!
+hostname sw-core
+sysLocation China
+sysContact 400-810-9119
+!
+authentication logging enable
+!
+username admin privilege 15 password 0 admin
+!
+!
+!
+!
+info-center logfile 4 config count 40960 nandflash logfile.log
+info-center logfile 4 output-enable
+info-center logfile 4 match level warnings 
+service dhcp
+!
+ip dhcp excluded-address 192.168.10.1
+ip dhcp excluded-address 192.168.10.254
+ip dhcp excluded-address 192.168.20.1
+ip dhcp excluded-address 192.168.20.254
+!
+ip dhcp pool 10
+ network-address 192.168.10.0 255.255.255.0
+ lease 3 0 0 
+ default-router 192.168.10.1
+ dns-server 114.114.114.114
+!
+ip dhcp pool 20
+ network-address 192.168.20.0 255.255.255.0
+ lease 2 0 0 
+ default-router 192.168.20.1
+ dns-server 114.114.114.114
+!
+ip dhcp snooping enable
+ip dhcp snooping vlan 10;20
+ ip dhcp snooping binding enable
+!
+!
+!
+!
+!
+!
+ipv6 security-ra enable
+!
+!
+!
+Interface Ethernet0
+!
+!
+!
+port-group 1
+!
+vlan 1;10;20;30;1000 
+!
+ipv6 ospf display route single-line
+!
+Interface Ethernet1/0/1
+!
+Interface Ethernet1/0/2
+!
+Interface Ethernet1/0/3
+!
+Interface Ethernet1/0/4
+!         
+Interface Ethernet1/0/5
+!
+Interface Ethernet1/0/6
+!
+Interface Ethernet1/0/7
+!
+Interface Ethernet1/0/8
+!
+Interface Ethernet1/0/9
+!
+Interface Ethernet1/0/10
+!
+Interface Ethernet1/0/11
+!
+Interface Ethernet1/0/12
+!
+Interface Ethernet1/0/13
+ switchport access vlan 10
+ port-group 1 mode active
+!
+Interface Ethernet1/0/14
+ switchport access vlan 10
+ port-group 1 mode active
+!
+Interface Ethernet1/0/15
+!
+Interface Ethernet1/0/16
+!
+Interface Ethernet1/0/17
+!
+Interface Ethernet1/0/18
+!
+Interface Ethernet1/0/19
+!
+Interface Ethernet1/0/20
+!
+Interface Ethernet1/0/21
+!
+Interface Ethernet1/0/22
+!
+Interface Ethernet1/0/23
+ switchport access vlan 20
+!
+Interface Ethernet1/0/24
+ switchport access vlan 1000
+!
+Interface Ethernet1/0/25
+!
+Interface Ethernet1/0/26
+!
+Interface Ethernet1/0/27
+!
+Interface Ethernet1/0/28
+!
+Interface Port-Channel1
+!
+interface Vlan1
+ ip address 192.168.1.1 255.255.255.0
+!
+interface Vlan10
+ ipv6 address 2026:10:1::1/64
+ ipv6 router ospf area 0
+ ip address 192.168.10.1 255.255.255.0
+!
+interface Vlan20
+ ipv6 address 2026:20:1::1/64
+ ipv6 router ospf area 0
+ ip address 192.168.20.1 255.255.255.0
+!
+interface Vlan30
+ ip address 192.168.30.254 255.255.255.0
+!
+interface Vlan1000
+ ipv6 address 2024:16:1::3/64
+ ipv6 router ospf area 0
+ ip address 102.16.1.3 255.255.255.0
+!
+router ospf 1
+ ospf router-id 1.1.1.1
+ network 102.16.1.0/24 area 0
+ network 192.168.1.0/24 area 0
+ network 192.168.10.0/24 area 0
+ network 192.168.20.0/24 area 0
+ default-information originate
+!
+router ipv6 ospf
+ router-id 1.1.1.1
+!
+!
+no login
+!
+!
+captive-portal
+!
+end
+sw-core
