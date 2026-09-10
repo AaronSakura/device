@@ -37,6 +37,22 @@ bash scripts/device_probe.sh -H 192.168.1.1 -u admin -m ssh -c "show interface"
 bash scripts/device_probe.sh -H 192.168.1.1 -m telnet -p 23
 ```
 
+## 答辩/汇报演示
+
+现场一条龙演示(生成流量 → 抓包 → 分析 → 设备核查):
+
+```bash
+bash demo/run_demo.sh            # 证据输出到 /tmp/net_demo_*
+```
+
+演示前务必先安装抓包工具,否则会跳过抓包环节:
+
+```bash
+sudo apt install wireshark tshark
+```
+
+演示流程与现场话术见 `demo/DEMO.md`。
+
 ## 安全说明
 
 - Telnet 为明文协议,**仅限受控实验环境**;生产环境统一使用 SSH
