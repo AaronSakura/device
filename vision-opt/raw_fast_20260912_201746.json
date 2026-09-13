@@ -1,0 +1,40 @@
+{
+  "time": "2026-09-12 20:17:42",
+  "runs": 30,
+  "warmup": 5,
+  "results": {
+    "torch_cpu": {
+      "runs": 30,
+      "mean_ms": 25.17,
+      "p95_ms": 25.65,
+      "fps": 39.7,
+      "detections": 2
+    },
+    "torch_gpu": {
+      "runs": 30,
+      "mean_ms": 3.55,
+      "p95_ms": 3.65,
+      "fps": 282.0,
+      "speedup_vs_torch_cpu": 7.09
+    },
+    "onnx_fp32": {
+      "runs": 30,
+      "mean_ms": 15.29,
+      "p95_ms": 15.49,
+      "fps": 65.4,
+      "size_mb": 12.27,
+      "detections": 2,
+      "speedup_vs_torch_cpu": 1.65
+    },
+    "onnx_int8": {
+      "runs": 30,
+      "mean_ms": 25.61,
+      "p95_ms": 26.18,
+      "fps": 39.1,
+      "size_mb": 3.36,
+      "detections": 2,
+      "speedup_vs_torch_cpu": 0.98
+    }
+  },
+  "wall_seconds": 4.3
+}

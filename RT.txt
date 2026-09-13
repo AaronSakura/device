@@ -1,0 +1,114 @@
+Current configuration:
+!
+hostname rt
+!
+!
+!
+!
+!
+ipv6 unicast-routing
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+isdn switch-type basic-5ess
+!
+!
+!
+aaa authentication login default local
+aaa authentication enable default enable
+!         
+username admin password 0 admin
+!
+enable password 0 admin level 15
+!
+!
+!
+!
+interface GigaEthernet0/0
+ ip address 202.102.1.2 255.255.255.0
+ ipv6 enable
+ ipv6 address 2024:102:1::2/64
+ ipv6 ospf 1 area 0 
+!
+interface GigaEthernet0/1
+ ip address 102.16.1.4 255.255.255.0
+ ipv6 enable
+ ipv6 address 2024:16:1::4/64
+ ipv6 ospf 1 area 0 
+!
+interface GigaEthernet0/2
+ no ip address
+!
+interface GigaEthernet0/3
+ no ip address
+!
+interface Serial1/0
+ no ip address
+!
+interface Serial1/1
+ no ip address
+!
+!
+!
+!
+!
+!
+router ospf 1
+ router-id 2.2.2.2
+ network 202.102.1.0 255.255.255.0 area 0
+ network 102.16.1.0 255.255.255.0 area 0
+ default-information originate
+
+!
+!
+!
+          
+!
+!
+!
+!
+!
+!
+!
+!
+!
+router ospfv3 1
+ router-id 4.4.4.4
+ default-information originate
+
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!         
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
